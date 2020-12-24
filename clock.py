@@ -38,13 +38,10 @@ def demo(n, block_orientation, rotate):
   # create matrix device
   serial = spi(port=0, device=0, gpio=noop())
   device = max7219(serial, cascaded=n or 1,  block_orientation=block_orientation, rotate=rotate or 0)
-  print("Created device")
 
   while True:
-    print("Create Time Array")
     x_y_values = []
     x_y_values = choose_time_array(x_y_values)
-    print("Time Array created!: ", x_y_values)
     with canvas(device) as draw:
       for x, y in x_y_values:
         draw.point((x,y), fill="red")
@@ -55,12 +52,9 @@ def choose_time_array(x_y_values):
   x_y_values.extend(AS_ISCH)
   parsed_time = str(datetime.now())
   hour, minute = parsed_time.split(" ")[1].split(".")[0].split(":")[:-1]
-  print("Hour: ", hour)
-  print("Minute: ", minute)
   next_hour = ""
   x_y_minutes, next_hour = minutes(hour, minute, x_y_values)
   x_y_full = hours(next_hour, x_y_minutes)
-  print(x_y_full)
   return x_y_full
 
 def minutes(next_hour, minute, x_y_values):
