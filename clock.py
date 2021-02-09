@@ -59,10 +59,13 @@ def drawMatrix(strip):
 
 
 def display_array(strip, color, array, rainbow = False):
+  rgbs = generate_gradient_rgbs(len(array)+1)
+  j = 0
   for i in range(strip.numPixels()):
     if array.__contains__(i):
       if rainbow == True:
-          strip.setPixelColor(i, wheel((i) & 255))
+        strip.setPixelColor(i, Color(int(rgbs[j][0]), int(rgbs[j][1]), int(rgbs[j][2])))
+        j += 1
       else:
         strip.setPixelColor(i, color)
     else:
@@ -155,6 +158,16 @@ def hours(next_hour):
     return EUFI
   if next_hour == 12 or next_hour == 00 or next_hour == 24:
     return ZWOUFI
+
+def generate_gradient_rgbs(num_buckets):
+  rgb_codes = []
+  step_size = 1024 / num_buckets
+  for step in range(0,num_buckets):
+    red = int(max(0, 255 - (step_size*step*0.5)))
+    blue = int(max(0, 255 - (step_size*0.5*(num_buckets-step-1))))
+    green = (255 - red) if red else (255 - blue)
+    rgb_codes.append((red, green, blue))
+  return rgb_codes
 
 def rainbow(strip, wait_ms=20, iterations=1):
   for j in range(2*iterations):
