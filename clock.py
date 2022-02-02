@@ -11,7 +11,7 @@ import argparse
 import datetime
 
 # LED strip configuration:
-LED_COUNT      = 114      # Number of LED pixels.
+LED_COUNT      = 111      # Number of LED pixels.
 LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
 #LED_PIN        = 10      # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
 LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
@@ -22,26 +22,26 @@ LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 
 LAST_MINUTE_ENTRY = 0
 
-AS_ISCH = [109, 108, 106, 105, 104, 103]
-M_FUF = [101, 100, 99]
-M_ZAA = [96, 97, 98]
-M_VIERTU = [88, 89, 90, 91, 92, 93]
-M_ZWANZG = [87, 86, 85, 84, 83, 82]
-VOR = [79, 78, 77]
-AB = [66, 67]
-M_HAUBI = [69, 70, 71, 72, 73]
-EUFI = [15, 14, 13, 12]
-FUFI = [50, 51, 52, 53]
-EIS = [65, 64, 63]
-ZWOI = [62, 61, 60, 59]
-DRU = [57, 56, 55]
-VIERI = [44, 45, 46, 47, 48]
-SACHSI = [43, 42, 41, 40, 39, 38]
-ACHTI = [22, 23, 24, 25, 26]
-SIBNI = [37, 36, 35, 34, 33]
-ZWOUFI = [3, 4, 5, 6, 7, 8]
-ZANI = [21, 20, 19, 18]
-NUNI = [28, 29, 30, 31]
+AS_ISCH = [110, 109, 107, 106, 105, 104]
+M_FUF = [102, 101, 100]
+M_ZAA = [97, 98, 99]
+M_VIERTU = [89, 90, 91, 92, 93, 94]
+M_ZWANZG = [88, 87, 86, 85, 84, 83]
+VOR = [80, 79, 78]
+AB = [67, 68]
+M_HAUBI = [70, 71, 72, 73, 74]
+EUFI = [16, 15, 14, 13]
+FUFI = [51, 52, 53, 54]
+EIS = [66, 65, 64]
+ZWOI = [63, 62, 61, 60]
+DRU = [58, 57, 56]
+VIERI = [45, 46, 47, 48, 49]
+SACHSI = [44, 43, 42, 41, 40, 39]
+ACHTI = [23, 24, 25, 26, 27]
+SIBNI = [38, 37, 36, 35, 34]
+ZWOUFI = [4, 5, 6, 7, 8, 9]
+ZANI = [22, 21, 20, 19]
+NUNI = [29, 30, 31, 32]
 
 # rosa 250,9,251
 # blauviolette 25,9,251
@@ -83,7 +83,7 @@ def create_time_array(strip):
       rainbow(strip)
     if min == 55:
       theaterChase(strip, Color(127,127,127), 50, 30)
-  time_array = time_array + AS_ISCH + minutes(now.minute) + minutes_4(now.minute)
+  time_array = time_array + AS_ISCH + minutes(now.minute)
   # print("hour: ", hour)
   if now.minute <= 24:
     time_array = time_array + hours(hour)
